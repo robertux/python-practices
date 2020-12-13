@@ -3,7 +3,8 @@ import re
 
 class Empleado:
 
-	def __init__(self, dui, nit, sueldo, tiempo_trabajo):
+	def __init__(self, nombre, dui, nit, sueldo, tiempo_trabajo):
+		self.nombre = nombre
 		self.dui = dui
 		self.nit = nit
 		self.sueldo = sueldo
@@ -30,7 +31,7 @@ class Empleado:
 		return True
 
 	def to_string(self):
-		print(f'Empleado [dui: {self.dui[:8]}-{self.dui[8]}, nit: {self.nit[:4]}-{self.nit[4:10]}-{nit[10:13]}-{nit[13]}, sueldo: ${self.sueldo}, años trabajo: {self.tiempo_trabajo}, aguinaldo: {self.aguinaldo}]')
+		print(f'Empleado [nombre: {self.nombre}, dui: {self.dui[:8]}-{self.dui[8]}, nit: {self.nit[:4]}-{self.nit[4:10]}-{nit[10:13]}-{nit[13]}, sueldo: ${self.sueldo}, años trabajo: {self.tiempo_trabajo}, aguinaldo: {self.aguinaldo}]')
 
 	def calcular_aguinaldo(self):
 		if (self.datos_validos()):
@@ -47,12 +48,13 @@ class Empleado:
 			return 0.0
 
 
+nombre = input("Ingrese el nombre del empleado: ")
 dui = input("Ingrese el DUI del empleado (sin guiones): ")
 nit = input("Ingrese el NIT del empleado (sin guiones): ")
 sueldo = float(input("Ingrese el sueldo del empleado: "))
 anios = int(input("Ingrese los años de trabajo: "))
 
-emp = Empleado(dui, nit, sueldo, anios)
+emp = Empleado(nombre, dui, nit, sueldo, anios)
 if (emp.datos_validos()):
 	print(emp.to_string())
 else:
